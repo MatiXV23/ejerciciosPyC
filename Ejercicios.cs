@@ -238,7 +238,6 @@ public class Ejercicio6
         
         foreach (var letter in oracion)
         {
-            Console.WriteLine(letter);
             if (abecedario.Contains(letter))
             {
                 abecedario = abecedario.Remove(abecedario.IndexOf(letter), 1);
@@ -258,5 +257,63 @@ public class Ejercicio6
 
 public class Ejercicio7
 {
-    
+    static bool[] nums()
+    {
+        bool[] numeros = new bool[100];
+        for (int i = 0; i < numeros.Length; i++)
+        {
+            //Console.Write(i + ") ");
+            numeros[i] = true;
+            //Console.WriteLine(numeros[i].ToString());
+        }
+
+        return numeros;
+    }
+    static int random()
+    {
+        return new Random().Next(1, 100);
+    }
+
+    static void impBoleto(int[][] boleto)
+    {
+        int row = 0, col = 0;
+        Console.WriteLine("      ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯");
+        foreach (var fila in boleto)
+        {
+            col = 0;
+            Console.Write("      [");
+            foreach (var columna in fila)
+            {
+                Console.Write(boleto[row][col].ToString() + " ");
+                col++;
+            }
+            Console.WriteLine("]");
+            row++;
+        }
+
+        Console.WriteLine("      ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯");
+    }
+    public static void BoletoLoteria()
+    {
+        int[][] boleto = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]];
+        bool[] Nums = nums();
+        int rand = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                do
+                {
+                    rand = random();
+                } while (!Nums[rand]);
+
+                Nums[rand] = false;
+                boleto[i][j] = rand;
+                
+            }
+        }
+        Console.WriteLine("\n   SU BOLETO DE LOTERIA ES:  \n");
+        impBoleto(boleto);
+        Console.WriteLine();
+    }
 }
